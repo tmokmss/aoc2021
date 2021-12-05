@@ -1,9 +1,10 @@
+require "prettyprint"
 require "set"
 
-if ARGV.length < 1
-  input_path = "input/DAY.txt"
+input_path = if ARGV.length < 1
+  "input/DAY.txt"
 else
-  input_path = "sample/DAY.txt"
+  "sample/DAY.txt"
 end
 
 puts "Load input from #{input_path}"
