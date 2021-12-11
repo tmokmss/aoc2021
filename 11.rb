@@ -1,5 +1,6 @@
 require "prettyprint"
 require "set"
+require_relative "./lib"
 
 input_path = if ARGV.length < 1
   "input/11.txt"
@@ -11,18 +12,6 @@ puts "Load input from #{input_path}"
 
 input = File.read(input_path).split("\n").map(&:strip)
 octopuses = input.map{|i|i.chars.map(&:to_i)}
-
-def pad!(matrix, val)
-  h = matrix.size
-  w = matrix[0].size
-  (0...h).each do |i|
-    matrix[i].unshift(val)
-    matrix[i].push(val)
-  end
-  matrix.unshift(Array.new(w + 2, val))
-  matrix.push(Array.new(w + 2, val))
-  matrix
-end
 
 pad!(octopuses, -2)
 

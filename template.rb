@@ -1,5 +1,6 @@
 require "prettyprint"
 require "set"
+require_relative './lib'
 
 input_path = if ARGV.length < 1
   "input/DAY.txt"
