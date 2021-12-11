@@ -18,3 +18,11 @@ def pad!(matrix, val)
   matrix.push(Array.new(w + 2, val))
   [h, w]
 end
+
+def around8(x=0, y=0)
+	[[-1,-1], [-1,0], [-1,1], [0,-1], [0,1], [1,-1], [1,0], [1,1]].map {|dx,dy| [x+dx, y+dy]}
+end
+
+def around4(x=0, y=0)
+	[[-1,0], [0,-1], [0,1], [1,0]].map {|dx,dy| [x+dx, y+dy]}
+end

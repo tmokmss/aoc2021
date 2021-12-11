@@ -13,24 +13,21 @@ puts "Load input from #{input_path}"
 input = File.read(input_path).split("\n").map(&:strip)
 octopuses = input.map{|i|i.chars.map(&:to_i)}
 
-pad!(octopuses, -2)
+h, w = pad!(octopuses, -2)
 
 ans = 0
 (0...100).each do |_|
   first = true
   loop do
     old_ans = ans
-    (1..10).each do |i|
-      (1..10).each do |j|
+    (1..h).each do |i|
+      (1..w).each do |j|
         oct = first ? (octopuses[i][j] += 1) : octopuses[i][j]
         if oct > 9
           ans += 1
-          (-1..1).each do |di|
-            (-1..1).each do |dj|
-              next if di == 0 && dj == 0
-              next if octopuses[i+di][j+dj] < 0
-              octopuses[i+di][j+dj] += 1
-            end
+          around8(i, j).each do |ii, jj|
+            next if octopuses[ii][jj] < 0
+            octopuses[ii][jj] += 1
           end
           octopuses[i][j] = -1
         end
@@ -39,8 +36,8 @@ ans = 0
     break if old_ans == ans
     first = false
   end
-  (1..10).each do |i|
-    (1..10).each do |j|
+  (1..h).each do |i|
+    (1..w).each do |j|
       octopuses[i][j] = 0 if octopuses[i][j] == -1
     end
   end
@@ -58,17 +55,14 @@ loop do
   first = true
   loop do
     old_ans = ans
-    (1..10).each do |i|
-      (1..10).each do |j|
+    (1..h).each do |i|
+      (1..w).each do |j|
         oct = first ? (octopuses[i][j] += 1) : octopuses[i][j]
         if oct > 9
           ans += 1
-          (-1..1).each do |di|
-            (-1..1).each do |dj|
-              next if di == 0 && dj == 0
-              next if octopuses[i+di][j+dj] < 0
-              octopuses[i+di][j+dj] += 1
-            end
+          around8(i, j).each do |ii, jj|
+            next if octopuses[ii][jj] < 0
+            octopuses[ii][jj] += 1
           end
           octopuses[i][j] = -1
         end
@@ -77,8 +71,8 @@ loop do
     break if old_ans == ans
     first = false
   end
-  (1..10).each do |i|
-    (1..10).each do |j|
+  (1..h).each do |i|
+    (1..w).each do |j|
       octopuses[i][j] = 0 if octopuses[i][j] == -1
     end
   end
