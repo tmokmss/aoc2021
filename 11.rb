@@ -3,15 +3,15 @@ require "set"
 require_relative "./lib"
 
 input_path = if ARGV.length < 1
-  "input/11.txt"
-else
-  "sample/11.txt"
-end
+    "input/11.txt"
+  else
+    "sample/11.txt"
+  end
 
 puts "Load input from #{input_path}"
 
 input = File.read(input_path).split("\n").map(&:strip)
-octopuses = input.map{|i|i.chars.map(&:to_i)}
+octopuses = input.map { |i| i.chars.map(&:to_i) }
 
 h, w = pad!(octopuses, -2)
 
@@ -46,7 +46,7 @@ end
 puts(ans)
 
 input = File.read(input_path).split("\n").map(&:strip)
-octopuses = input.map{|i|i.chars.map(&:to_i)}
+octopuses = input.map { |i| i.chars.map(&:to_i) }
 pad!(octopuses, -2)
 
 ans2 = 1
