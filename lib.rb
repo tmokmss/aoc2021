@@ -19,6 +19,10 @@ def pad!(matrix, val)
   [h, w]
 end
 
+# Usage:
+# around8(x, y).each do |xx, yy|
+#   # some process using arr[xx][yy]
+# end
 def around8(x = 0, y = 0)
   [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]].map { |dx, dy| [x + dx, y + dy] }
 end
